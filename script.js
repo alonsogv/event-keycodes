@@ -21,10 +21,24 @@
 // });
 
 // Method 2
+let typedText = '';
 
 function showKeyCodes(e) {
     const insert = document.getElementById('insert');
+    
+    if (e.key === 'Backspace') {
+    typedText = typedText.slice(0, -1);
+    } else if (e.key.length === 1 || e.key === ' ') {
+    
+    typedText += e.key === ' ' ? ' ' : e.key;
+    }
+
     insert.innerHTML = '';
+
+    
+    const heading = document.createElement('h1');
+    heading.textContent = typedText.trim() === '' ? 'Press any key to get the keycode' : typedText;
+    insert.appendChild(heading);
 
     const keyCodes = {
         'e.key': e.key === ' ' ? 'Space': e.key,
